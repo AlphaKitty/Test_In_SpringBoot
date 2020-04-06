@@ -1,0 +1,46 @@
+linux心得
+
+xdg-open [dir]快速打开目录
+程序安装生成的配置文件都放在/home的隐藏目录下
+
+快捷键:
+	alt + shift + 1234 = 切换1234工作区
+	win + alt + 1234 = 把窗口移动到1234工作区
+	win + alt + 上下 = 工作窗口在工作区之间切换
+
+	win + 左右上下 = 移动和缩放窗口
+	win + F8 = 改变窗口大小
+	win + M = 移动窗口
+
+	win + shift + 左右上下 = 多个显示器转换
+	win + tab = 应用之间切换
+	win + ctrl + tab = 窗口和顶栏之间切换
+
+	win + A = 显示全部应用
+	win + ` = 切换全屏模式
+	win + Z = 隐藏当前窗口
+
+	ctrl + alt + A = 截屏到粘贴版
+	ctrl + shift + alt + A = 截屏到图片目录
+
+	win + A = 打开主目录
+	win + R = 记录一段录屏并保存到视频目录
+
+	win + + = 增大字号
+	win + - = 减小字号
+
+
+临时记录:
+	ubuntu下mysql的配置文件放在/etc/mysql/mysql.conf.d目录下
+	ubuntu下mysql5修改默认密码:
+		1.定位到/etc/mysql/mysql.conf.d目录下 找到mysqld.cnf
+		2.在[mysqld]的最后一行添加skip-grant-tables命令
+		3.重启mysql服务 sudo service mysql restart 重启之后可以用无密码方式登陆root
+		4.修改系统用户表root用户的密码为root:
+			update mysql.user set authentication_string = password('root') where User = 'root' and Host = 'localhost';
+		5.更新系统用户表的插件为本地密码:
+			update mysql.user set plugin = 'mysql_native_password';
+		6.刷新privileges
+			update privileges;
+		7.删掉或注释掉mysqld.cnf中添加的skip_grant_tables字段 重启mysql服务
+		8.再次用root/root重新登陆mysql 发现可以正常登陆
